@@ -110,7 +110,7 @@ main {
 /* Grades e tabelas */
 .metrics-container {
   border-bottom: 50px solid var(--color-metrics);
-  margin: 40px;
+  margin: 40px 0;
 
   &.adulto-masculino { border-bottom-color: #B0E0E6; }
   &.adulto-feminino { border-bottom-color: #DDA0DD; }
