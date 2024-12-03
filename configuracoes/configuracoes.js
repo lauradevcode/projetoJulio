@@ -119,7 +119,7 @@ function carregarIntervalos() {
             ([quartil, valores]) => `
               <label for="${faixa}-${parametro}-${quartil}">${quartil}</label>
               <input 
-                type="text" 
+                type="text" style="margin-bottom: 5px;"
                 id="${faixa}-${parametro}-${quartil}" 
                 data-faixa="${faixa}" 
                 data-parametro="${parametro}" 
