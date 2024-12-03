@@ -17,30 +17,56 @@ const nomesExames = {
   monocitos: "Monócitos",
 };
 
-function generatePDF() {
-  // Elemento que será convertido em PDF
-  const element = document.querySelector('.container');
-  
-  // Configurações do PDF
+window.generatePDF = function () {
+  const element = document.querySelector(".container");
+
   const opt = {
-      margin: 0.5,
-      filename: 'relatorio-treebios.pdf',
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { 
-          scale: 4,
-          useCORS: true,
-          logging: true
-      },
-      jsPDF: { 
-          unit: 'in', 
-          format: 'a4', 
-          orientation: 'portrait' 
-      }
+    margin: [0, -12, 0, 0], // Valor negativo para compensar a margem
+    filename: "relatorio-treebios.pdf",
+    image: {
+      type: "jpeg",
+      quality: 0.98,
+    },
+    html2canvas: {
+      scale: 2,
+      useCORS: true,
+      logging: false,
+      backgroundColor: "#ffffff",
+    },
+    jsPDF: {
+      unit: "pt",
+      format: "a4",
+      orientation: "portrait",
+    },
   };
 
-  // Gerar o PDF
-  html2pdf().set(opt).from(element).save();
-}
+  // Loader simples
+  const loader = document.createElement("div");
+  loader.innerHTML = "Gerando PDF...";
+  loader.style.position = "fixed";
+  loader.style.top = "50%";
+  loader.style.left = "50%";
+  loader.style.transform = "translate(-50%, -50%)";
+  loader.style.padding = "20px";
+  loader.style.background = "#3B5998";
+  loader.style.color = "white";
+  loader.style.borderRadius = "10px";
+  loader.style.zIndex = "9999";
+  document.body.appendChild(loader);
+
+  html2pdf()
+    .from(element)
+    .set(opt)
+    .save()
+    .then(() => {
+      document.body.removeChild(loader);
+    })
+    .catch((err) => {
+      console.error("Erro ao gerar PDF:", err);
+      document.body.removeChild(loader);
+      alert("Erro ao gerar o PDF. Por favor, tente novamente.");
+    });
+};
 
 // Determinar qual prescrição usar com base na faixa etária
 function getPrescricoesPorFaixaEtaria(faixaEtaria) {
@@ -81,19 +107,24 @@ function preencherTabela(resultados) {
 
 function formatarPrescricao(texto) {
   // Primeiro, divide o texto em linhas e remove linhas vazias
-  const linhas = texto.split('\n').filter(linha => linha.trim());
-  
-  let html = '';
+  const linhas = texto.split("\n").filter((linha) => linha.trim());
+
+  let html = "";
   let currentBlock = null;
-  
-  linhas.forEach(linha => {
+
+  linhas.forEach((linha) => {
     linha = linha.trim();
-    
+
     // Verifica se é um título (em maiúsculas e não começa com palavras específicas)
-    if (linha === linha.toUpperCase() && !linha.startsWith('OBJETIVO:') && !linha.startsWith('SUGESTÃO:') && !linha.startsWith('FREQUENCIA:')) {
-      if (linha.includes('...')) {
+    if (
+      linha === linha.toUpperCase() &&
+      !linha.startsWith("OBJETIVO:") &&
+      !linha.startsWith("SUGESTÃO:") &&
+      !linha.startsWith("FREQUENCIA:")
+    ) {
+      if (linha.includes("...")) {
         // É uma linha pontilhada com valor
-        const [nome, valor] = linha.split('...');
+        const [nome, valor] = linha.split("...");
         html += `
           <div class="medicamento">
             <span class="medicamento-nome">${nome.trim()}</span>
@@ -102,29 +133,29 @@ function formatarPrescricao(texto) {
       } else {
         // É um título de receita
         if (currentBlock) {
-          html += '</div>';
+          html += "</div>";
         }
         html += `<div class="receita"><div class="receita-titulo">${linha}</div>`;
-        currentBlock = 'receita';
+        currentBlock = "receita";
       }
-    } else if (linha.startsWith('OBJETIVO:')) {
+    } else if (linha.startsWith("OBJETIVO:")) {
       html += `<div class="receita-objetivo">${linha}</div>`;
-    } else if (linha.startsWith('SUGESTÃO:')) {
+    } else if (linha.startsWith("SUGESTÃO:")) {
       html += `<div class="receita-sugestao">${linha}</div>`;
-    } else if (linha.startsWith('FREQUENCIA:')) {
+    } else if (linha.startsWith("FREQUENCIA:")) {
       html += `<div class="receita-frequencia">${linha}</div>`;
-    } else if (linha.startsWith('OBS:')) {
+    } else if (linha.startsWith("OBS:")) {
       html += `<div class="observacao">${linha}</div>`;
     } else {
       // Conteúdo regular da receita
       html += `<div class="receita-conteudo">${linha}</div>`;
     }
   });
-  
+
   if (currentBlock) {
-    html += '</div>';
+    html += "</div>";
   }
-  
+
   return html;
 }
 
@@ -146,21 +177,29 @@ function exibirPrescricoesPorQuartil(resultados, prescricoes) {
       const quartiHtml = `
         <div class="quartil-section">
           <h3 class="quartil-header">
-            ${quartil === 'Q0' ? 'Quartil 0    abaixo de: 4,5' : 
-              quartil === 'Q1' ? '1º Quartil baixo de : 13 a  13,875' : 
-              `Quartil ${quartil.substring(1)}`}
+            ${
+              quartil === "Q0"
+                ? "Quartil 0    abaixo de: 4,5"
+                : quartil === "Q1"
+                ? "1º Quartil baixo de : 13 a  13,875"
+                : `Quartil ${quartil.substring(1)}`
+            }
           </h3>
-          ${quartil === 'Q0' ? `
+          ${
+            quartil === "Q0"
+              ? `
             <div class="quartil-description">
               abaixo de 4,5 milhões/mm³ (ou 4,5 x 10⁶/µL) podem sugerir anemia ou algum outro tipo de distúrbio que afete a produção, destruição ou perda dessas células.
               As causas podem incluir: Deficiência de nutrientes, Perda de sangue, Doenças crônicas, Problemas na medula óssea, Hemólise, Doenças genéticas.
               Prescrever, e orientar buscar ajuda médica e terapêutica.
             </div>
-          ` : ''}
+          `
+              : ""
+          }
           ${formatarPrescricao(prescricoes[quartil])}
         </div>
       `;
-      
+
       prescricoesDiv.innerHTML += quartiHtml;
     }
   });
@@ -168,23 +207,37 @@ function exibirPrescricoesPorQuartil(resultados, prescricoes) {
 
 // Função para exibir o status geral
 function exibirStatusGeral(resultados) {
-  const statusGrid1 = document.getElementById('status-grid-1');
-  const statusGrid2 = document.getElementById('status-grid-2');
+  const statusGrid1 = document.getElementById("status-grid-1");
+  const statusGrid2 = document.getElementById("status-grid-2");
 
-  const firstGridItems = ['hemacias', 'hemoglobina', 'vcm', 'hcm', 'chcm'];
-  const secondGridItems = ['leucocitos', 'plaquetas', 'rdw', 'eosinofilos', 'monocitos'];
+  const firstGridItems = ["hemacias", "hemoglobina", "vcm", "hcm", "chcm"];
+  const secondGridItems = [
+    "leucocitos",
+    "plaquetas",
+    "rdw",
+    "eosinofilos",
+    "monocitos",
+  ];
 
-  statusGrid1.innerHTML = firstGridItems.map(item => `
+  statusGrid1.innerHTML = firstGridItems
+    .map(
+      (item) => `
       <div class="status-item">
-          ${resultados[item]?.status || 'IDEAL'}
+          ${resultados[item]?.status || "IDEAL"}
       </div>
-  `).join('');
+  `
+    )
+    .join("");
 
-  statusGrid2.innerHTML = secondGridItems.map(item => `
+  statusGrid2.innerHTML = secondGridItems
+    .map(
+      (item) => `
       <div class="status-item">
-          ${resultados[item]?.status || 'IDEAL'}
+          ${resultados[item]?.status || "IDEAL"}
       </div>
-  `).join('');
+  `
+    )
+    .join("");
 }
 
 // Recuperar os resultados e exibir na página
@@ -203,7 +256,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const metricsGrids = document.querySelectorAll(".metrics-grid");
-  const genero = localStorage.getItem("generoSelecionado")
+  const metricsContainer = document.querySelector(".metrics-container");
+  const genero = localStorage.getItem("generoSelecionado");
+
+  if (faixaEtaria === "adulto") {
+    metricsContainer.classList.add(`adulto-${genero}`);
+  } else {
+    metricsContainer.classList.add(faixaEtaria);
+  }
+
   metricsGrids.forEach((grid) => {
     if (faixaEtaria === "adulto") {
       grid.classList.add(`adulto-${genero}`);
@@ -231,8 +292,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Exibir nome, sobrenome, data do exame e data atual
-  const patientInfo = document.getElementById('patient-info');
-    patientInfo.innerHTML = `
+  const patientInfo = document.getElementById("patient-info");
+  patientInfo.innerHTML = `
         <div class="info-left">
             <p>Paciente: ${nome} ${sobrenome}</p>
             <p>Data exame: ${dataExameFormatada}</p>

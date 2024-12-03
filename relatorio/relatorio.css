@@ -3,7 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Advent+Pro:ital,wght@0,100..900;1,100..900&display=swap");
 @import url('https://fonts.cdnfonts.com/css/abeezee');
-
+@import url('https://fonts.cdnfonts.com/css/cavolini');
 /* Reset e configurações base */
 * {
   margin: 0;
@@ -17,7 +17,7 @@ body {
 }
 
 main {
-  padding: 0 40px;
+  padding: 20px 40px;
 }
 
 .container {
@@ -60,9 +60,12 @@ main {
   display: flex;
   width: 100%;
 }
+.logo-section {
+  width: 30%;
+}
 
 .logo-section img {
-  width: 350px;
+  width: 100%;
   padding: 40px;
   background: white;
 }
@@ -105,11 +108,21 @@ main {
 }
 
 /* Grades e tabelas */
+.metrics-container {
+  border-bottom: 50px solid var(--color-metrics);
+  margin: 40px;
+
+  &.adulto-masculino { border-bottom-color: #B0E0E6; }
+  &.adulto-feminino { border-bottom-color: #DDA0DD; }
+  &.crianca { border-bottom-color: #FFB6C1; }
+  &.idoso { border-bottom-color: #1dd363; }
+}
+
 .metrics-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 10px;
-  padding: 10px;
+  padding: 15px;
   margin: 10px 0;
   background-color: var(--color-metrics);
   
@@ -117,6 +130,7 @@ main {
     font-family: "ADLaM Display", system-ui;
     color: #fff;
     text-align: center;
+    font-size: 21px;
   }
   
   &.adulto-masculino { background-color: #B0E0E6; }
@@ -144,30 +158,115 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-transform: uppercase;
 }
 
 /* Prescrições e orientações */
 .therapeutic-guide {
   background-color: var(--color-primary);
   color: white;
-  padding: 20px;
+  padding: 25px;
+  text-align: center;
+  max-width: 150%;
+  margin-left: -40px;  
+  margin-right: -40px; 
+  padding-left: 40px; 
+  padding-right: 40px;
   
   h2 {
-    text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-size: 1.5rem;
   }
+}
+
+.therapeutic-guide-line {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 10px;
+  text-align: center;
+  max-width: 150%;
+  margin-left: -40px;  
+  margin-right: -40px; 
+  padding-left: 40px; 
+  padding-right: 40px;
 }
 
 .orientacao {
   background-color: white;
   color: black;
-  padding: 20px;
+  padding-bottom: 20px;
   margin-top: 20px;
   
   h3, p, .artigo {
     font-family: 'ABeeZee', sans-serif;
   }
+}
+
+.prescricoes div {
+  font-family: 'Cavolini', sans-serif;
+}
+
+.quartil-header {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.quartil-description {
+  margin-bottom: 30px;
+}
+
+/* Receitas e outros itens */
+.receita {
+  margin: 25px 0;
+}
+
+.receita-titulo {
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.receita-conteudo {
+  margin-bottom: 8px;
+}
+
+.receita-objetivo,
+.receita-sugestao,
+.receita-frequencia {
+  margin: 5px 0;
+}
+
+/* Medicamentos com linhas pontilhadas */
+.medicamento {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.medicamento-nome {
+  flex: 1;
+}
+
+.medicamento-nome::after {
+  content: '';
+  border-bottom: 1px dotted #000;
+  display: inline-block;
+  width: 100%;
+  margin-right: 5px;
+}
+
+.medicamento-valor {
+  white-space: nowrap;
+}
+
+/* Observações e notas */
+.observacao {
+  margin-top: 10px;
+}
+
+/* Espaçamento entre quartis */
+.quartil-section {
+  margin-bottom: 40px;
 }
 
 /* Botões e interações */
@@ -217,7 +316,7 @@ th, td {
   display: flex;
   justify-content: center;
   gap: 20px;
-  margin: 20px 0;
+  margin: 20px 0 40px 0;
   padding: 10px;
   
   span {
