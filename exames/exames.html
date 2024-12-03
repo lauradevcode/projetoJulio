@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TreeBios Exames</title>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    // Função para carregar o script de quartis (único arquivo para ambos os gêneros)
+    function carregarScriptQuartis() {
+      const script = document.createElement("script");
+      script.src = "quartis.js"; // Arquivo único para lógica de quartis
+      document.head.appendChild(script);
+    }
+
+    // Função para atualizar os rótulos dos exames com base no gênero
+    function atualizarLabels() {
+      const genero = localStorage.getItem("generoSelecionado");
+      const sigla = genero === "masculino" ? "(H)" : genero === "feminino" ? "(M)" : "";
+      
+      const labels = document.querySelectorAll(".form-group label");
+      labels.forEach(label => {
+        label.textContent = label.textContent.replace(/\(.*\)/, "").trim() + ` ${sigla}`;
+      });
+    }
+
+    // Chamada das funções ao carregar a página
+    window.onload = function () {
+      carregarScriptQuartis(); // Carrega o script único
+      atualizarLabels();       // Atualiza os rótulos com base no gênero
+    };
+  </script>
+</head>
+<body>
+  <div class="container">
+    <button class="settings-btn" onclick="window.location.href='../configuracoes/configuracoes.html'">⚙️</button>
+
+    <div class="header">
+      <div class="logo">
+        <img src="../template/treebios_horizontal-cor_branco 3.png" alt="TreeBios Logo">
+      </div>
+    </div>
+    
+    <h2>Exames</h2>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="hemoglobina">Hemoglobina</label>
+        <input type="text" id="hemoglobina" placeholder="Ex.: 12.5,13.5,14.2,15.0">
+      </div>
+      <div class="form-group">
+        <label for="hemacias">Hemácias</label>
+        <input type="text" id="hemacias" placeholder="Ex.: 4.1,4.5,5.0,5.3">
+      </div>
+      <div class="form-group">
+        <label for="hematocrito">Hematócrito</label>
+        <input type="text" id="hematocrito" placeholder="Ex.: 38,41,43,46">
+      </div>
+      <div class="form-group">
+        <label for="vcm">Volume Corpuscular Médio (VCM)</label>
+        <input type="text" id="vcm" placeholder="Ex.: 82,87,92,98">
+      </div>
+      <div class="form-group">
+        <label for="hcm">Hemoglobina Corpuscular Média (HCM)</label>
+        <input type="text" id="hcm" placeholder="Ex.: 27.5,29.0,31.5,33">
+      </div>
+      <div class="form-group">
+        <label for="chcm">Concentração de Hemoglobina Corpuscular Média (CHCM)</label>
+        <input type="text" id="chcm" placeholder="Ex.: 32.5,33.0,34.0,35.5">
+      </div>
+      <div class="form-group">
+        <label for="leucocitos">Leucócitos</label>
+        <input type="text" id="leucocitos" placeholder="Ex.: 5.0,6.5,8.0,10">
+      </div>
+      <div class="form-group">
+        <label for="plaquetas">Plaquetas</label>
+        <input type="text" id="plaquetas" placeholder="Ex.: 160,250,330,400">
+      </div>
+      <div class="form-group">
+        <label for="rdw">RDW</label>
+        <input type="text" id="rdw" placeholder="Ex.: 12.0,13.0,13.8,14.4">
+      </div>
+      <div class="form-group">
+        <label for="rdw">RDW</label>
+        <input type="text" id="rdw" placeholder="Ex.: 12.0,13.0,13.8,14.4">
+      </div>
+      <div class="form-group">
+        <label for="eosinofilos">Eosinófilos</label>
+        <input type="text" id="eosinofilos" placeholder="Ex.: 12.0,13.0,13.8,14.4">
+      </div>
+      <div class="form-group">
+        <label for="monocitos">Monócitos</label>
+        <input type="text" id="monocitos" placeholder="Ex.: 12.0,13.0,13.8,14.4">
+      </div>
+    </div>
+    <div class="button-group">
+      <button class="submit-btn" onclick="calcularQuartisFormulario()">Prosseguir</button>
+      <button class="back-btn" onclick="window.location.href='../dadosCadastrais/dadosCadastrais.html'">Voltar</button>
+    </div>    
+  </div>
+</body>
+</html>

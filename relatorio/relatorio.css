@@ -1,0 +1,149 @@
+/* Estilo Geral */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 30px auto;
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabeçalho */
+header {
+  background-color: #c8f6e0;
+  padding: 20px;
+  border-bottom: 5px solid #4CAF50;
+}
+
+header .top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .logo img {
+  max-width: 150px;
+}
+
+header h1 {
+  font-size: 32px;
+  color: #000;
+  margin: 0;
+  text-align: center;
+}
+
+.info-geral {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Tabela */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+thead {
+  background-color: #4CAF50;
+  color: white;
+  font-weight: bold;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  text-align: center;
+  padding: 12px;
+  font-size: 14px;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+/* Legenda */
+.legenda {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.legenda span {
+  padding: 8px 20px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+}
+
+.legenda .baixo {
+  background-color: #d3d3d3;
+  color: #333;
+}
+
+.legenda .ideal {
+  background-color: #4CAF50;
+}
+
+.legenda .acima {
+  background-color: #FFA500;
+}
+
+/* Prescrições */
+.prescricoes {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #eef6f9;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.prescricoes h2 {
+  color: #333;
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.prescricao-item {
+  margin-bottom: 15px;
+  padding: 10px;
+  background: #ffffff;
+  border-radius: 5px;
+  border: 1px solid #cce7f0;
+  font-size: 14px;
+}
+
+/* Rodapé */
+footer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+footer button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+footer button:hover {
+  background-color: #45a049;
+}

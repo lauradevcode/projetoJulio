@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatório de Exames</title>
+  <link rel="stylesheet" href="relatorio.css">
+  <script type="module" src="../relatorio/relatorio.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="top-bar">
+        <div class="logo">
+          <img src="treebios-logo.png" alt="Treebios Logo">
+        </div>
+      <h1>Relatório Final</h1>
+    </header>
+    <main>
+      <table id="tabela-quartis">
+        <thead>
+          <tr>
+            <th>Exame</th>
+            <th>Q0</th>
+            <th>Q1</th>
+            <th>Q2</th>
+            <th>Q3</th>
+            <th>Q4</th>
+            <th>Q5</th>
+          </tr>
+        </thead>
+        <tbody id="tabela-corpo">
+          <!-- Linhas geradas dinamicamente -->
+        </tbody>
+      </table>
+      <div id="status-geral">
+        <!-- Status geral exibido aqui -->
+      </div>
+      <div id="prescricoes" class="prescricoes">
+        <!-- Prescrições exibidas dinamicamente -->
+      </div>
+    </main>
+    <footer>
+      <button onclick="window.location.href='../exames/exames.html'">Voltar</button>
+    </footer>
+  </div>
+</body>
+</html>

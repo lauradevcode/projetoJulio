@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TreeBios - Cadastro</title>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    // Limpa o localStorage (apenas para testes, remova em produção)
+    localStorage.clear();
+
+    function salvarDados() {
+      const nome = document.getElementById("nome").value;
+      const sobrenome = document.getElementById("sobrenome").value;
+      const genero = document.getElementById("genero").value;
+      const faixaEtaria = document.getElementById("faixaEtaria").value;
+      const dataExame = document.getElementById("dataExame").value;
+      
+      // Salvar dados no localStorage
+      localStorage.setItem("nome", nome);
+      localStorage.setItem("sobrenome", sobrenome);
+      localStorage.setItem("generoSelecionado", genero);
+      localStorage.setItem("faixaEtaria", faixaEtaria);
+      localStorage.setItem("dataExame", dataExame);
+      // Redirecionar para a página de exames
+      window.location.href = "../exames/exames.html";
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <!-- Seção de Imagens com Carrossel -->
+    <div class="carousel-section">
+      <div class="carousel">
+        <img src="../template/card analise biofisica 1.png" alt="Imagem 1" class="carousel-image">
+        <img src="../template/bioquimica-clinica-entenda-o-que-e-conheca-curso-mercado.jpg" alt="Imagem 2" class="carousel-image">
+        <img src="../template/images.jpg" alt="Imagem 3" class="carousel-image">
+      </div>
+    </div>
+
+    <!-- Seção de Cadastro -->
+    <div class="form-section">
+      <div class="header-container">
+        <div class="logo">
+          <img src="../template/treebios_horizontal-cor_branco 3.png" alt="TreeBios Logo">
+        </div>
+        <h2>Dados Cadastrais</h2>
+      </div>
+      
+      <form onsubmit="event.preventDefault(); salvarDados();">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="sobrenome">Sobrenome</label>
+            <input type="text" id="sobrenome" name="sobrenome" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="faixaEtaria">Faixa Etária</label>
+            <select id="faixaEtaria" name="faixaEtaria" required>
+              <option value="nenhum"></option>
+              <option value="crianca">0 - 13 anos</option>
+              <option value="adulto">14 - 69 anos</option>
+              <option value="idoso">70+ anos</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="genero">Gênero</label>
+            <select id="genero" name="genero" required>
+              <option value="vazio"></option>
+              <option value="masculino">Masculino</option>
+              <option value="feminino">Feminino</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="dataExame">Data realizada o exame</label>
+            <input type="date" id="dataExame" name="dataExame" required>
+          </div>
+        </div>
+
+        <button type="submit">Prosseguir</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

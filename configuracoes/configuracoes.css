@@ -1,0 +1,97 @@
+/* Corpo da página */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4; /* Fundo claro */
+}
+
+/* Estilo do cabeçalho */
+.header {
+  background-color: #2F56A2; /* Fundo azul */
+  padding: 20px 0;
+  text-align: center;
+}
+
+.logo-container {
+  display: inline-block;
+}
+
+.logo {
+  max-width: 200px; /* Ajusta o tamanho da logo */
+  height: auto; /* Mantém a proporção da imagem */
+}
+
+/* Estilo do conteúdo principal */
+.main-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 100px); /* Altura da tela menos o cabeçalho */
+  background-color: #f9f9ff; /* Fundo levemente cinza */
+}
+
+.container {
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  width: 85%;
+  max-width: 800px;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Estilo do grupo de formulários */
+.form-group {
+  margin-top: 20px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.row label {
+  flex: 0 0 10%; /* Define a largura das labels */
+  text-align: right;
+  margin-right: 10px;
+}
+
+.row input {
+  flex: 0 0 40%; /* Define a largura dos inputs */
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.row input:focus {
+  border-color: #2F56A2;
+  outline: none;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .row label {
+    text-align: left;
+    margin-right: 0;
+    margin-bottom: 5px;
+  }
+
+  .row input {
+    width: 100%;
+  }
+}
