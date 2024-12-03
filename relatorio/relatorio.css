@@ -119,7 +119,8 @@ main {
     text-align: center;
   }
   
-  &.adulto { background-color: #B0E0E6; }
+  &.adulto-masculino { background-color: #B0E0E6; }
+  &.adulto-feminino { background-color: #DDA0DD; }
   &.crianca { background-color: #FFB6C1; }
   &.idoso { background-color: #1dd363; }
 }

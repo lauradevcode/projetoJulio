@@ -105,34 +105,39 @@ function carregarIntervalos() {
 
     const divFaixa = document.createElement("div");
     divFaixa.classList.add("faixa-group");
-    divFaixa.innerHTML = `<h3>Faixa Etária: ${faixa.charAt(0).toUpperCase() + faixa.slice(1)}</h3>`;
+    divFaixa.innerHTML = `<h3>Faixa Etária: ${
+      faixa.charAt(0).toUpperCase() + faixa.slice(1)
+    }</h3>`;
 
     for (const parametro in parametros) {
       const intervalos = parametros[parametro];
       const divParametro = document.createElement("div");
       divParametro.classList.add("form-group");
 
+      // Mudar apenas esta parte dentro da função carregarIntervalos()
       divParametro.innerHTML = `
-        <h4>${parametro}</h4>
-        ${Object.entries(intervalos)
-          .map(
-            ([quartil, valores]) => `
-              <div style="display:flex; gap: 5px;">
-                <label for="${faixa}-${parametro}-${quartil}">${quartil}</label>
-                <input 
-                  type="text" 
-                  style="width: 90%; margin-bottom: 5px;"
-                  id="${faixa}-${parametro}-${quartil}" 
-                  data-faixa="${faixa}" 
-                  data-parametro="${parametro}" 
-                  data-quartil="${quartil}" 
-                  value="${valores.join(",")}" 
-                />
-              </div>
-            `
-          )
-          .join("")}
-      `;
+<h4>${parametro}</h4>
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+  ${Object.entries(intervalos)
+    .map(
+      ([quartil, valores]) => `
+        <div style="display:flex; gap: 5px;">
+          <label for="${faixa}-${parametro}-${quartil}">${quartil}</label>
+          <input 
+            type="text" 
+            style="width: 90%; margin-bottom: 5px;"
+            id="${faixa}-${parametro}-${quartil}" 
+            data-faixa="${faixa}" 
+            data-parametro="${parametro}" 
+            data-quartil="${quartil}" 
+            value="${valores.join(",")}" 
+          />
+        </div>
+      `
+    )
+    .join("")}
+</div>
+`;
       divFaixa.appendChild(divParametro);
     }
     container.appendChild(divFaixa);
@@ -144,7 +149,7 @@ function salvarIntervalos() {
   const inputs = document.querySelectorAll("#quartis-container input");
   const quartisAtualizados = {};
 
-  inputs.forEach(input => {
+  inputs.forEach((input) => {
     const faixa = input.dataset.faixa;
     const parametro = input.dataset.parametro;
     const quartil = input.dataset.quartil;

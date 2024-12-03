@@ -202,9 +202,14 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  const metricsGrids = document.querySelectorAll('.metrics-grid');
-  metricsGrids.forEach(grid => {
-    grid.classList.add(faixaEtaria);
+  const metricsGrids = document.querySelectorAll(".metrics-grid");
+  const genero = localStorage.getItem("generoSelecionado")
+  metricsGrids.forEach((grid) => {
+    if (faixaEtaria === "adulto") {
+      grid.classList.add(`adulto-${genero}`);
+    } else {
+      grid.classList.add(faixaEtaria);
+    }
   });
 
   // Obter a prescrição correta com base na faixa etária
