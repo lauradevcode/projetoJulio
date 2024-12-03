@@ -53,6 +53,27 @@ h2 {
   margin-top: 20px;
 }
 
+.save-btn {
+  width: 20%; /* Mesma largura dos inputs e labels */
+  padding: 8px;
+  background-color: #2F56A2;
+  color: #ffffff;
+  border: solid;
+  border-radius: 10px;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+.back-btn {
+  width: 20%; /* Mesma largura dos inputs e labels */
+  padding: 8px;
+  background-color: #2F56A2;
+  color: #ffffff;
+  border: solid;
+  border-radius: 10px;
+  font-size: 0.9em;
+  cursor: pointer;
+}
 .row {
   display: flex;
   justify-content: space-between;

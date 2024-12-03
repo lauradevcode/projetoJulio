@@ -46,12 +46,12 @@
   .login-section label {
     font-size: 0.9em;
     margin-bottom: 5px;
-    width: 80%; /* Garante que os labels ocupem a mesma largura dos inputs */
+    width: 60%  ; /* Garante que os labels ocupem a mesma largura dos inputs */
     text-align: left; /* Alinha os labels à esquerda */
   }
   
   .login-section input {
-    width: 80%; /* Alinhado com os labels */
+    width: 60%; /* Alinhado com os labels */
     padding: 8px;
     margin-bottom: 15px; /* Espaço entre os campos */
     border: none;
@@ -59,7 +59,7 @@
   }
   
   .login-section button {
-    width: 80%; /* Mesma largura dos inputs e labels */
+    width: 60%; /* Mesma largura dos inputs e labels */
     padding: 8px;
     background-color: #ffffff;
     color: #2F56A2;

@@ -117,15 +117,18 @@ function carregarIntervalos() {
         ${Object.entries(intervalos)
           .map(
             ([quartil, valores]) => `
-              <label for="${faixa}-${parametro}-${quartil}">${quartil}</label>
-              <input 
-                type="text" style="margin-bottom: 5px;"
-                id="${faixa}-${parametro}-${quartil}" 
-                data-faixa="${faixa}" 
-                data-parametro="${parametro}" 
-                data-quartil="${quartil}" 
-                value="${valores.join(",")}" 
-              />
+              <div style="display:flex; gap: 5px;">
+                <label for="${faixa}-${parametro}-${quartil}">${quartil}</label>
+                <input 
+                  type="text" 
+                  style="width: 90%; margin-bottom: 5px;"
+                  id="${faixa}-${parametro}-${quartil}" 
+                  data-faixa="${faixa}" 
+                  data-parametro="${parametro}" 
+                  data-quartil="${quartil}" 
+                  value="${valores.join(",")}" 
+                />
+              </div>
             `
           )
           .join("")}
