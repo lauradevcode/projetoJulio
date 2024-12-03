@@ -1,48 +1,141 @@
 <!DOCTYPE html>
-<html lang="pt">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Relatório de Exames</title>
-  <link rel="stylesheet" href="relatorio.css">
-  <script type="module" src="../relatorio/relatorio.js"></script>
-</head>
-<body>
-  <div class="container">
-    <header>
-      <div class="top-bar">
-        <div class="logo">
-          <img src="treebios-logo.png" alt="Treebios Logo">
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relatório Final</title>
+    <link rel="stylesheet" href="relatorio.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="color-bar">
+        <div class="color-bar-segment color-1"></div>
+        <div class="color-bar-segment color-2"></div>
+        <div class="color-bar-segment color-3"></div>
+        <div class="color-bar-segment color-4"></div>
+      </div>
+
+      <header>
+        <div class="top-bar">
+          <div class="logo-section">
+            <img
+              src="/template/treebios_vertical-cor.png"
+              alt="Treebios Logo"
+            />
+          </div>
+          <div class="header-info">
+            <div class="report-section">
+              <h1>Relatório Final</h1>
+              <div id="patient-info" class="patient-info">
+                <!-- Preenchido JS -->
+              </div>
+            </div>
+          </div>
         </div>
-      <h1>Relatório Final</h1>
-    </header>
-    <main>
-      <table id="tabela-quartis">
-        <thead>
-          <tr>
-            <th>Exame</th>
-            <th>Q0</th>
-            <th>Q1</th>
-            <th>Q2</th>
-            <th>Q3</th>
-            <th>Q4</th>
-            <th>Q5</th>
-          </tr>
-        </thead>
-        <tbody id="tabela-corpo">
-          <!-- Linhas geradas dinamicamente -->
-        </tbody>
-      </table>
-      <div id="status-geral">
-        <!-- Status geral exibido aqui -->
+        <div class="blue-line"></div>
+      </header>
+
+      <div class="download-button">
+        <button onclick="generatePDF()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"
+            />
+          </svg>
+        </button>
       </div>
-      <div id="prescricoes" class="prescricoes">
-        <!-- Prescrições exibidas dinamicamente -->
-      </div>
-    </main>
-    <footer>
-      <button onclick="window.location.href='../exames/exames.html'">Voltar</button>
-    </footer>
-  </div>
-</body>
+
+      <main>
+        <table>
+          <thead>
+            <tr>
+              <th>Índice</th>
+              <th>Q0</th>
+              <th>Q1</th>
+              <th>Q2</th>
+              <th>Q3</th>
+              <th>Q4</th>
+              <th>Q5</th>
+            </tr>
+          </thead>
+          <tbody id="tabela-corpo">
+            <!-- Preenchido JS -->
+          </tbody>
+        </table>
+
+        <div class="legenda">
+          <span class="baixo">ABAIXO DO IDEAL</span>
+          <span class="ideal">IDEAL</span>
+          <span class="acima">ACIMA DO IDEAL</span>
+        </div>
+
+        <div>
+          <h2 class="therapeutic-guide">Orientações terapêuticas para performar seu Hemograma</h2>
+          <div class="orientacao">
+            <h3>COMECE O DIA ASSIM</h3>
+            <p class="orientacao-texto">
+              Escovando a língua ou melhor... raspando a 😜 pois toxinas
+              noturnas do metabolismo hepático são depositadas na língua e são
+              capazes de inflamar o corpo. Nunca use pasta de dentes com flúor
+              na língua, e nem mesmo nos dentes. O uso do flúor impacta a
+              tireoide causando inflamação. Este hábito deve ser levado em
+              continuidade para a vida toda.
+            </p>
+            <div class="artigo">
+              <p class="artigo-titulo">ARTIGO:</p>
+              <p class="artigo-texto">
+                DOS SANTOS Domingos, P. A., Ricci-Donato, H. A., & Russi, A. K.
+                F. D. (2018). Riscos do uso do flúor sistêmico: revisão de
+                literatura. Journal of Research in Dentistry, 6(4).
+              </p>
+              <p class="artigo-info">
+                Informações para Suporte e tele-consulta profissional: 61 9
+                81519696
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="metrics-container">
+          <div class="metrics-grid first-grid">
+            <div class="metric-item">Hemácias(Eritrócitos)</div>
+            <div class="metric-item">Hemoglobina</div>
+            <div class="metric-item">VCM</div>
+            <div class="metric-item">HCM</div>
+            <div class="metric-item">CHCM</div>
+          </div>
+          <div class="status-grid" id="status-grid-1">
+            <!-- Preenchido JS -->
+          </div>
+
+          <div class="metrics-grid second-grid">
+            <div class="metric-item">Leucócitos</div>
+            <div class="metric-item">Plaquetas</div>
+            <div class="metric-item">RDW</div>
+            <div class="metric-item">Eosinófilos</div>
+            <div class="metric-item">Monócitos</div>
+          </div>
+          <div class="status-grid" id="status-grid-2">
+            <!-- Preenchido JS -->
+          </div>
+        </div>
+
+        <div id="status-geral" class="status-section"></div>
+
+        <div id="prescricoes" class="prescricoes"></div>
+      </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script type="module" src="relatorio.js"></script>
+  </body>
 </html>
