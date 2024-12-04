@@ -112,10 +112,10 @@ main {
   border-bottom: 50px solid var(--color-metrics);
   margin: 40px 0;
 
-  &.adulto-masculino { border-bottom-color: #B0E0E6; }
-  &.adulto-feminino { border-bottom-color: #DDA0DD; }
-  &.crianca { border-bottom-color: #FFB6C1; }
-  &.idoso { border-bottom-color: #1dd363; }
+  &.adulto-masculino { border-bottom-color: #A4CCEC; }
+  &.adulto-feminino { border-bottom-color: #ECA4DF;}
+  &.crianca { border-bottom-color: #A4ECA4; }
+  &.idoso { border-bottom-color: #ADADAD; }
 }
 
 .metrics-grid {
