@@ -133,10 +133,10 @@ main {
     font-size: 21px;
   }
   
-  &.adulto-masculino { background-color: #B0E0E6; }
-  &.adulto-feminino { background-color: #DDA0DD; }
-  &.crianca { background-color: #FFB6C1; }
-  &.idoso { background-color: #1dd363; }
+  &.adulto-masculino { border-bottom-color: #A4CCEC; }
+  &.adulto-feminino { border-bottom-color: #ECA4DF;}
+  &.crianca { border-bottom-color: #A4ECA4; }
+  &.idoso { border-bottom-color: #ADADAD; }
 }
 
 /* Status e métricas */
