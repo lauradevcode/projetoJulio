@@ -1,123 +1,138 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-  }
-  
-  html, body {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #e0f7fa; /* Background claro */
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e0f7fa; /* Background claro */
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.logo-fundo {
+  background-color: #ffffff;
+  display: flex; /* Ativa o flexbox */
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  padding: 25px;
+  width: 60%;
+}
+
+.logo-login {
+  width: 100%;
+}
+
+.login-section {
+  width: 30%;
+  background-color: #2f56a2; /* Cor azul escuro */
+  padding: 40px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-section h2 {
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  margin-top: 5%;
+}
+
+.login-section form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-section label {
+  font-size: 0.9em;
+  margin-bottom: 5px;
+  width: 60%; /* Garante que os labels ocupem a mesma largura dos inputs */
+  text-align: left; /* Alinha os labels à esquerda */
+}
+
+.login-section input {
+  width: 60%; /* Alinhado com os labels */
+  padding: 8px;
+  margin-bottom: 15px; /* Espaço entre os campos */
+  border: none;
+  border-radius: 4px;
+}
+
+.login-section button {
+  width: 60%; /* Mesma largura dos inputs e labels */
+  padding: 8px;
+  background-color: #ffffff;
+  color: #2f56a2;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+.login-section button:hover {
+  background-color: #dddddd;
+}
+
+.campaign-section {
+  width: 70%;
+  background-color: #29b6f6; /* Cor azul claro */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.campaign-section .campaign-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Media Queries para Responsividade */
+
+/* Ajustes para tablets */
+@media (max-width: 768px) {
   .container {
-    display: flex;
-    width: 100%;
-    height: 100%;
+    flex-direction: column; /* Organiza as seções em coluna */
   }
-  
+
   .login-section {
-    width: 30%;
-    background-color: #2F56A2; /* Cor azul escuro */
-    padding: 40px;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .login-section h2 {
-    margin-bottom: 20px;
-    font-size: 1.5em;
-  }
-  
-  .login-section form {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 20px;
   }
-  
-  .login-section label {
-    font-size: 0.9em;
-    margin-bottom: 5px;
-    width: 60%  ; /* Garante que os labels ocupem a mesma largura dos inputs */
-    text-align: left; /* Alinha os labels à esquerda */
-  }
-  
-  .login-section input {
-    width: 60%; /* Alinhado com os labels */
-    padding: 8px;
-    margin-bottom: 15px; /* Espaço entre os campos */
-    border: none;
-    border-radius: 4px;
-  }
-  
-  .login-section button {
-    width: 60%; /* Mesma largura dos inputs e labels */
-    padding: 8px;
-    background-color: #ffffff;
-    color: #2F56A2;
-    border: none;
-    border-radius: 4px;
-    font-size: 0.9em;
-    cursor: pointer;
-  }
-  
-  .login-section button:hover {
-    background-color: #dddddd;
-  }
-  
+
   .campaign-section {
-    width: 70%;
-    background-color: #29b6f6; /* Cor azul claro */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-  
-  .campaign-section .campaign-image {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: 50vh; /* Ajuste para ocupar metade da tela em tablets */
   }
-  
-  /* Media Queries para Responsividade */
-  
-  /* Ajustes para tablets */
-  @media (max-width: 768px) {
-    .container {
-      flex-direction: column; /* Organiza as seções em coluna */
-    }
-  
-    .login-section {
-      width: 100%;
-      padding: 20px;
-    }
-  
-    .campaign-section {
-      width: 100%;
-      height: 50vh; /* Ajuste para ocupar metade da tela em tablets */
-    }
+}
+
+@media (max-width: 480px) {
+  .login-section h2 {
+    font-size: 1.2em;
   }
-  
-  @media (max-width: 480px) {
-    .login-section h2 {
-      font-size: 1.2em;
-    }
-  
-    .login-section input, .login-section button {
-      font-size: 0.9em;
-    }
-  
-    .campaign-section {
-      height: 50vh; /* Ajuste para ocupação de altura em dispositivos menores */
-    }
+
+  .login-section input,
+  .login-section button {
+    font-size: 0.9em;
   }
-  
+
+  .campaign-section {
+    height: 50vh; /* Ajuste para ocupação de altura em dispositivos menores */
+  }
+}

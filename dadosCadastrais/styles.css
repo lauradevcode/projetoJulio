@@ -51,6 +51,18 @@ html, body {
     67%, 100% { transform: translateX(-200%); }
 }
   
+.logo-fundo {
+    background-color: #ffffff;
+    display: flex; /* Ativa o flexbox */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    padding: 25px;
+    width: 60%;
+  }
+  
+  .logo-login {
+    width: 100%;
+  }
 /* Seção do Formulário de Cadastro */
 .form-section {
     width: 40%;
@@ -81,6 +93,7 @@ html, body {
     font-size: 1.8em;
     margin: 0;
     padding-top: 10px;
+    margin-top: 15px;
 }
   
 .form-row {

@@ -35,22 +35,25 @@
   <div class="container">
     <button class="settings-btn" onclick="window.location.href='../configuracoes/configuracoes.html'">⚙️</button>
 
-    <div class="header">
-      <div class="logo">
-        <img src="../template/treebios_horizontal-cor_branco 3.png" alt="TreeBios Logo">
-      </div>
-    </div>
+        <!-- Logo -->
+        <div class="logo-fundo">
+          <img
+            class="logo-login"
+            src="/template/treebios_vertical-cor.png"
+            alt="Treebios Logo"
+          />
+        </div>
     
     <h2>Exames</h2>
 
     <div class="form-grid">
       <div class="form-group">
-        <label for="hemoglobina">Hemoglobina</label>
-        <input type="text" id="hemoglobina" placeholder="Ex.: 12.5,13.5,14.2,15.0">
-      </div>
-      <div class="form-group">
         <label for="hemacias">Hemácias</label>
         <input type="text" id="hemacias" placeholder="Ex.: 4.1,4.5,5.0,5.3">
+      </div>
+      <div class="form-group">
+        <label for="hemoglobina">Hemoglobina</label>
+        <input type="text" id="hemoglobina" placeholder="Ex.: 12.5,13.5,14.2,15.0">
       </div>
       <div class="form-group">
         <label for="hematocrito">Hematócrito</label>
@@ -69,29 +72,45 @@
         <input type="text" id="chcm" placeholder="Ex.: 32.5,33.0,34.0,35.5">
       </div>
       <div class="form-group">
+        <label for="rdw">RDW</label>
+        <input type="text" id="rdw" placeholder="Ex.: 12.0,13.0,13.8,14.4">
+      </div>
+      <div class="form-group">
         <label for="leucocitos">Leucócitos</label>
         <input type="text" id="leucocitos" placeholder="Ex.: 5.0,6.5,8.0,10">
       </div>
       <div class="form-group">
-        <label for="plaquetas">Plaquetas</label>
-        <input type="text" id="plaquetas" placeholder="Ex.: 160,250,330,400">
+        <label for="bastonetes">Bastonetes</label>
+        <input type="text" id="bastonetes" placeholder="Ex.: 12.0,13.0,13.8,14.4">
       </div>
       <div class="form-group">
-        <label for="rdw">RDW</label>
-        <input type="text" id="rdw" placeholder="Ex.: 12.0,13.0,13.8,14.4">
-      </div>
-      <div class="form-group">
-        <label for="rdw">RDW</label>
-        <input type="text" id="rdw" placeholder="Ex.: 12.0,13.0,13.8,14.4">
+        <label for="segmentados">Segmentados</label>
+        <input type="text" id="segmentados" placeholder="Ex.: 12.0,13.0,13.8,14.4">
       </div>
       <div class="form-group">
         <label for="eosinofilos">Eosinófilos</label>
         <input type="text" id="eosinofilos" placeholder="Ex.: 12.0,13.0,13.8,14.4">
       </div>
       <div class="form-group">
+        <label for="basofilos">Basófilos</label>
+        <input type="text" id="basofilos" placeholder="Ex.: 12.0,13.0,13.8,14.4">
+      </div>
+      <div class="form-group">
+        <label for="linfocitos">Linfócitos</label>
+        <input type="text" id="linfocitos" placeholder="Ex.: 12.0,13.0,13.8,14.4">
+      </div>
+      <div class="form-group">
         <label for="monocitos">Monócitos</label>
         <input type="text" id="monocitos" placeholder="Ex.: 12.0,13.0,13.8,14.4">
       </div>
+
+      <div class="form-group">
+        <label for="plaquetas">Plaquetas</label>
+        <input type="text" id="plaquetas" placeholder="Ex.: 160,250,330,400">
+      </div>
+
+
+
     </div>
     <div class="button-group">
       <button class="submit-btn" onclick="calcularQuartisFormulario()">Prosseguir</button>

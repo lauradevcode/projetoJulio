@@ -29,6 +29,21 @@ body, html {
   position: relative;
 }
 
+.logo-fundo {
+  margin-top: 5%;
+  background-color: #ffffff;
+  display: flex; /* Ativa o flexbox */
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  padding: 5%;
+  width: 30%!important;
+  border-radius: 5px;
+}
+
+.logo-login {
+  width: 50%;
+}
+
 /* Botão de configurações */
 .settings-btn {
   position: absolute;
