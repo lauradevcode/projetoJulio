@@ -3,7 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Advent+Pro:ital,wght@0,100..900;1,100..900&display=swap");
 @import url('https://fonts.cdnfonts.com/css/abeezee');
-@import url('https://fonts.cdnfonts.com/css/cavolini');
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Advent+Pro:ital,wght@0,100..900;1,100..900&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 /* Reset e configurações base */
 * {
   margin: 0;
@@ -112,10 +112,10 @@ main {
   border-bottom: 50px solid var(--color-metrics);
   margin: 40px 0;
 
-  &.adulto-masculino { border-bottom-color: #A4CCEC; }
-  &.adulto-feminino { border-bottom-color: #ECA4DF;}
-  &.crianca { border-bottom-color: #A4ECA4; }
-  &.idoso { border-bottom-color: #ADADAD; }
+  &.adulto-masculino { border-bottom-color: #B0E0E6; }
+  &.adulto-feminino { border-bottom-color: #DDA0DD; }
+  &.crianca { border-bottom-color: #91d3aa; }
+  &.idoso { border-bottom-color: #afafaf; }
 }
 
 .metrics-grid {
@@ -133,10 +133,10 @@ main {
     font-size: 21px;
   }
   
-  &.adulto-masculino { border-bottom-color: #A4CCEC; }
-  &.adulto-feminino { border-bottom-color: #ECA4DF;}
-  &.crianca { border-bottom-color: #A4ECA4; }
-  &.idoso { border-bottom-color: #ADADAD; }
+  &.adulto-masculino { background-color: #B0E0E6; }
+  &.adulto-feminino { background-color: #DDA0DD; }
+  &.crianca { background-color: #91d3aa; }
+  &.idoso { background-color: #afafaf; }
 }
 
 /* Status e métricas */
@@ -202,71 +202,76 @@ main {
   }
 }
 
+.artigo-titulo {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.artigo-texto {
+  color: #088d44;
+}
+
+.artigo-info {
+  font-weight: bold;
+}
+
 .prescricoes div {
-  font-family: 'Cavolini', sans-serif;
+  font-family: 'Abel', sans-serif;
 }
 
 .quartil-header {
-  font-size: 16px;
-  margin-bottom: 15px;
-}
-
-.quartil-description {
-  margin-bottom: 30px;
-}
-
-/* Receitas e outros itens */
-.receita {
-  margin: 25px 0;
-}
-
-.receita-titulo {
   font-weight: bold;
-  margin-bottom: 10px;
+  font-size: 22px;
+  color: #919191;
+  margin: 30px 0 15px 0;
+}
+
+/* Títulos das receitas */
+.recipe-title {
+  font-weight: bold;
+  font-size: 16px;
+  margin: 20px 0 10px 0;
   text-transform: uppercase;
 }
 
-.receita-conteudo {
-  margin-bottom: 8px;
+/* Tags OBJETIVO, SUGESTÃO, FREQUENCIA */
+.tag {
+  font-weight: bold;
+  display: inline;
 }
 
-.receita-objetivo,
-.receita-sugestao,
-.receita-frequencia {
-  margin: 5px 0;
+/* Texto das receitas */
+.recipe-content {
+  margin: 10px 0;
 }
 
 /* Medicamentos com linhas pontilhadas */
-.medicamento {
+.medication-line {
   display: flex;
   align-items: center;
   margin: 5px 0;
 }
 
-.medicamento-nome {
-  flex: 1;
+.med-name {
+  font-weight: bold;
 }
 
-.medicamento-nome::after {
-  content: '';
-  border-bottom: 1px dotted #000;
-  display: inline-block;
-  width: 100%;
-  margin-right: 5px;
+.med-value {
+  font-weight: bold;
 }
 
-.medicamento-valor {
-  white-space: nowrap;
+/* Artigos e informações adicionais */
+.article {
+  font-weight: bold;
+  margin-top: 20px;
 }
 
-/* Observações e notas */
-.observacao {
+.article-content {
+  font-style: italic;
+}
+
+.contact-info {
   margin-top: 10px;
-}
-
-/* Espaçamento entre quartis */
-.quartil-section {
-  margin-bottom: 40px;
 }
 
 /* Botões e interações */
@@ -305,9 +310,28 @@ th, td {
   text-align: center;
 }
 
+/* Marca abaixo do ideal (Q0) */
+tr:has(td:first-child):has([class*="Q0"]) .marked {
+  background-color: hsla(0, 0%, 65%, 0.63);
+  color: black;
+}
+
+/* Marca ideal (Q2-Q3) */
+tr:has(td:first-child):has([class*="Q2"]) .marked,
+tr:has(td:first-child):has([class*="Q3"]) .marked {
+  background-color: #0deb71;
+  color: black;
+}
+
+/* Marca acima do ideal (Q5) */
+tr:has(td:first-child):has([class*="Q5"]) .marked {
+  background-color: hsla(21, 100%, 50%, 0.63);
+  color: black;
+}
+
+/* Adicione transição suave */
 .marked {
-  background-color: var(--color-success);
-  color: white;
+  transition: background-color 0.3s ease;
   font-weight: bold;
 }
 
@@ -333,3 +357,135 @@ th, td {
 .baixo { background-color: hsla(0, 0%, 65%, 0.63); }
 .ideal { background-color: #0deb71; }
 .acima { background-color: hsla(21, 100%, 50%, 0.63); }
+
+
+@media screen and (max-width: 1024px) {
+  .container {
+    max-width: 100%;
+  }
+
+  .metrics-grid div {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  main {
+    padding: 10px 20px;
+  }
+
+  .top-bar {
+    flex-direction: column;
+  }
+
+  .logo-section, .header-info {
+    width: 100%;
+  }
+
+  .logo-section img {
+    padding: 20px;
+  }
+
+  .report-section h1 {
+    font-size: 2.5rem;
+  }
+
+  .metrics-grid {
+    gap: 5px;
+    padding: 10px;
+  }
+
+  .metrics-grid div {
+    font-size: 16px;
+  }
+
+  .legenda {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .patient-info {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .therapeutic-guide {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .metrics-grid div {
+    font-size: 14px;
+  }
+
+  .status-item {
+    font-size: 14px;
+    padding: 5px;
+  }
+
+  .report-section h1 {
+    font-size: 2rem;
+  }
+
+  .info-left p,
+  .info-right p {
+    font-size: 1rem;
+  }
+
+  table th, table td {
+    padding: 8px;
+    font-size: 14px;
+  }
+}
+
+/* Rodapé */
+footer {
+  text-align: center;
+  margin-top: 20px;
+}
+footer button {
+  padding: 10px 20px;
+  border: none;
+  background-color: var(--color-primary);
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+footer button:hover {
+  background-color: #1f3e80;
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .container {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  p, div, span {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  table, tr, td {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+}

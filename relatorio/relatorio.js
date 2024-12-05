@@ -19,9 +19,9 @@ const nomesExames = {
 
 window.generatePDF = function () {
   const element = document.querySelector(".container");
-
+  
   const opt = {
-    margin: [0, -12, 0, 0], // Valor negativo para compensar a margem
+    margin: [0, -12, 0, 0], // mantendo a margem que estava funcionando
     filename: "relatorio-treebios.pdf",
     image: {
       type: "jpeg",
@@ -95,8 +95,8 @@ function preencherTabela(resultados) {
     ["Q0", "Q1", "Q2", "Q3", "Q4", "Q5"].forEach((quartil) => {
       const colunaQuartil = document.createElement("td");
       if (dados.quartil === quartil) {
-        colunaQuartil.textContent = "X"; // Marca o quartil associado
-        colunaQuartil.classList.add("marked");
+        colunaQuartil.textContent = "X";
+        colunaQuartil.classList.add("marked", quartil); // Adiciona a classe do quartil
       }
       linha.appendChild(colunaQuartil);
     });
@@ -105,57 +105,63 @@ function preencherTabela(resultados) {
   });
 }
 
-function formatarPrescricao(texto) {
-  // Primeiro, divide o texto em linhas e remove linhas vazias
-  const linhas = texto.split("\n").filter((linha) => linha.trim());
+function formatarPrescricao(texto, quartil) {
+  const linhas = texto.split('\n').filter(linha => linha.trim());
+  let html = '';
 
-  let html = "";
+  // Título do quartil
+  html += `<div class="quartil-header">Quartil ${quartil} - Orientações terapêuticas para performar seu Hemograma</div>`;
+
   let currentBlock = null;
-
-  linhas.forEach((linha) => {
+  
+  linhas.forEach(linha => {
     linha = linha.trim();
-
-    // Verifica se é um título (em maiúsculas e não começa com palavras específicas)
-    if (
-      linha === linha.toUpperCase() &&
-      !linha.startsWith("OBJETIVO:") &&
-      !linha.startsWith("SUGESTÃO:") &&
-      !linha.startsWith("FREQUENCIA:")
-    ) {
-      if (linha.includes("...")) {
-        // É uma linha pontilhada com valor
-        const [nome, valor] = linha.split("...");
+    
+    if (linha === '') return;
+    
+    // Verifica se é título em maiúsculas
+    if (linha === linha.toUpperCase() && 
+        !linha.startsWith('OBJETIVO:') && 
+        !linha.startsWith('SUGESTÃO:') && 
+        !linha.startsWith('FREQUENCIA:') &&
+        !linha.startsWith('ARTIGO:')) {
+      
+      if (linha.includes('...')) {
+        // Medicamentos com linha pontilhada
+        const [nome, valor] = linha.split('...');
         html += `
-          <div class="medicamento">
-            <span class="medicamento-nome">${nome.trim()}</span>
-            <span class="medicamento-valor">${valor.trim()}</span>
+          <div class="medication-line">
+            <span class="med-name">${nome.trim()}</span>
+            <span class="med-dots"></span>
+            <span class="med-value">${valor.trim()}</span>
           </div>`;
       } else {
-        // É um título de receita
-        if (currentBlock) {
-          html += "</div>";
-        }
-        html += `<div class="receita"><div class="receita-titulo">${linha}</div>`;
-        currentBlock = "receita";
+        // Título de receita
+        if (currentBlock) html += '</div>';
+        html += `
+          <div class="recipe">
+            <div class="recipe-title">${linha}</div>`;
+        currentBlock = 'recipe';
       }
-    } else if (linha.startsWith("OBJETIVO:")) {
-      html += `<div class="receita-objetivo">${linha}</div>`;
-    } else if (linha.startsWith("SUGESTÃO:")) {
-      html += `<div class="receita-sugestao">${linha}</div>`;
-    } else if (linha.startsWith("FREQUENCIA:")) {
-      html += `<div class="receita-frequencia">${linha}</div>`;
-    } else if (linha.startsWith("OBS:")) {
-      html += `<div class="observacao">${linha}</div>`;
+    } else if (linha.startsWith('OBJETIVO:')) {
+      html += `<div><span class="tag">OBJETIVO:</span> ${linha.replace('OBJETIVO:', '')}</div>`;
+    } else if (linha.startsWith('SUGESTÃO:')) {
+      html += `<div><span class="tag">SUGESTÃO:</span> ${linha.replace('SUGESTÃO:', '')}</div>`;
+    } else if (linha.startsWith('FREQUENCIA:')) {
+      html += `<div><span class="tag">FREQUENCIA:</span> ${linha.replace('FREQUENCIA:', '')}</div>`;
+    } else if (linha.startsWith('ARTIGO:')) {
+      html += `
+        <div class="article">ARTIGO:</div>
+        <div class="article-content">${linha.replace('ARTIGO:', '').trim()}</div>`;
+    } else if (linha.includes('tele-consulta profissional:')) {
+      html += `<div class="contact-info">${linha}</div>`;
     } else {
-      // Conteúdo regular da receita
-      html += `<div class="receita-conteudo">${linha}</div>`;
+      html += `<div class="recipe-content">${linha}</div>`;
     }
   });
-
-  if (currentBlock) {
-    html += "</div>";
-  }
-
+  
+  if (currentBlock) html += '</div>';
+  
   return html;
 }
 
@@ -173,34 +179,13 @@ function exibirPrescricoesPorQuartil(resultados, prescricoes) {
 
     if (examesNesteQuartil.length > 0 && !quartisExibidos.has(quartil)) {
       quartisExibidos.add(quartil);
-
-      const quartiHtml = `
-        <div class="quartil-section">
-          <h3 class="quartil-header">
-            ${
-              quartil === "Q0"
-                ? "Quartil 0    abaixo de: 4,5"
-                : quartil === "Q1"
-                ? "1º Quartil baixo de : 13 a  13,875"
-                : `Quartil ${quartil.substring(1)}`
-            }
-          </h3>
-          ${
-            quartil === "Q0"
-              ? `
-            <div class="quartil-description">
-              abaixo de 4,5 milhões/mm³ (ou 4,5 x 10⁶/µL) podem sugerir anemia ou algum outro tipo de distúrbio que afete a produção, destruição ou perda dessas células.
-              As causas podem incluir: Deficiência de nutrientes, Perda de sangue, Doenças crônicas, Problemas na medula óssea, Hemólise, Doenças genéticas.
-              Prescrever, e orientar buscar ajuda médica e terapêutica.
-            </div>
-          `
-              : ""
-          }
-          ${formatarPrescricao(prescricoes[quartil])}
-        </div>
-      `;
-
-      prescricoesDiv.innerHTML += quartiHtml;
+      
+      // Formata o número do quartil para exibição
+      const quartiNum = quartil.substring(1);
+      
+      // Gera o HTML formatado para o quartil
+      const prescricaoHtml = formatarPrescricao(prescricoes[quartil], quartiNum);
+      prescricoesDiv.innerHTML += prescricaoHtml;
     }
   });
 }
@@ -248,6 +233,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const sobrenome = localStorage.getItem("sobrenome");
   const dataExame = localStorage.getItem("dataExame");
   const faixaEtaria = localStorage.getItem("faixaEtaria");
+  const nomeAvaliador = localStorage.getItem("nomeAvaliador");
+  const telefoneAvaliador = localStorage.getItem("telefoneAvaliador");
 
   if (!resultados || !nome || !sobrenome || !dataExame || !faixaEtaria) {
     alert("Erro: Informações incompletas!");
@@ -300,8 +287,8 @@ document.addEventListener("DOMContentLoaded", () => {
             <p>Data relatório: ${dataAtual}</p>
         </div>
         <div class="info-right">
-            <p>Nome Completo do avaliador: Denise</p>
-            <p>Telefone do avaliador:</p>
+            <p>Nome Completo do avaliador: ${nomeAvaliador}</p>
+            <p>Telefone do avaliador: ${telefoneAvaliador}</p>
         </div>
     `;
 

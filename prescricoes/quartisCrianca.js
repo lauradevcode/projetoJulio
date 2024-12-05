@@ -10,7 +10,7 @@ export const quartisCriancaPrescricoes = {
     OBJETIVO: modular imunidade
     FREQUENCIA: 4x por semana por 8 semanas
 
-    FERRO OLIGO...................................................................................................................................................................................................60ml
+    FERRO OLIGO.......................................................................................................................................................60ml
     OBJETIVO: Promover circulação de B9 na célula
     SUGESTÃO: 5 borrifadas sublingual 3 x ao dia por 20 dias	
     ONDE COMPRAR COM SEGURANÇA? +55 (11) 972854142 Terapeuta Lis Sequinel

@@ -15,13 +15,20 @@
       const genero = document.getElementById("genero").value;
       const faixaEtaria = document.getElementById("faixaEtaria").value;
       const dataExame = document.getElementById("dataExame").value;
+      const nomeAvaliador = document.getElementById("nomeAvaliador").value;
+      const telefoneAvaliador = document.getElementById("telefoneAvaliador").value;
       
       // Salvar dados no localStorage
       localStorage.setItem("nome", nome);
       localStorage.setItem("sobrenome", sobrenome);
+      localStorage.setItem("sobrenome", sobrenome);
       localStorage.setItem("generoSelecionado", genero);
       localStorage.setItem("faixaEtaria", faixaEtaria);
       localStorage.setItem("dataExame", dataExame);
+      localStorage.setItem("nomeAvaliador", nomeAvaliador);
+      localStorage.setItem("telefoneAvaliador", telefoneAvaliador);
+
+
       // Redirecionar para a página de exames
       window.location.href = "../exames/exames.html";
     }
@@ -85,6 +92,18 @@
               <option value="masculino">Masculino</option>
               <option value="feminino">Feminino</option>
             </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nomeAvaliador">Nome completo do avaliador</label>
+            <input type="text" id="nomeAvaliador" name="nomeAvaliador" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="telefoneAvaliador">Telefone do avaliador</label>
+            <input type="number" id="telefoneAvaliador" name="telefoneAvaliador" required>
           </div>
         </div>
 
